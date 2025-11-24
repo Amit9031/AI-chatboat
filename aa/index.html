@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Amit's AI Voice Assistant Dashboard">
+    <meta name="author" content="Amit Ranjan">
+    <title>Magical Chatbot</title>
+    
+    <!-- Web Manifest for PWA -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" as="style" href="style.css">
+    <link rel="preload" as="script" href="script.js">
+</head>
+<body>
+    <!-- Magical Background Elements -->
+    <div class="magical-background">
+        <div class="magical-particles" id="particles"></div>
+        <div class="magical-orbs" id="orbs"></div>
+        <div class="magical-rays" id="rays"></div>
+        <div class="decorative-images">
+            <img src="images/ai-bot.png" alt="AI Bot" class="decorative-bot">
+            <img src="images/tech-pattern.png" alt="Tech Pattern" class="decorative-pattern">
+            <img src="images/neon-glow.png" alt="Neon Glow" class="decorative-glow">
+            <img src="images/wings.png" alt="Wings" class="decorative-wings">
+        </div>
+    </div>
+
+    <!-- Main Dashboard Container -->
+    <div class="dashboard-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <img src="images/logo.png" alt="Logo" class="logo-image">
+                    </div>
+                    <h2 class="logo-text">Amit's AI</h2>
+                </div>
+                <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle Sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link" data-tab="chat">
+                            <i class="fas fa-comments"></i>
+                            <span>Chat</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-tab="analytics">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-tab="history">
+                            <i class="fas fa-history"></i>
+                            <span>History</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-tab="settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <img src="images/user-avatar.png" alt="User Avatar" class="avatar-image">
+                    </div>
+                    <div class="user-info">
+                        <h4 class="user-name">Amit Ranjan</h4>
+                        <span class="user-role">Administrator</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Top Header Bar -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Mobile Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title">Voice Assistant Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="search" placeholder="Search conversations..." aria-label="Search">
+                    </div>
+                    <button class="notifications-btn" aria-label="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Dynamic Content Sections -->
+            <div class="content-wrapper">
+                
+                <!-- Chat Section -->
+                <section class="chat-section active" id="chat-section">
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <div class="header-content">
+                                <div class="assistant-profile">
+                                    <div class="profile-image">
+                                        <img src="images/assistant-avatar.png" alt="Assistant Avatar" class="assistant-image">
+                                        <span class="status-indicator online"></span>
+                                    </div>
+                                    <div class="assistant-info">
+                                        <h2>AI Assistant</h2>
+                                        <p class="status">
+                                            <span class="status-dot"></span>
+                                            <span id="status">Online</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="chat-actions">
+                                    <button class="action-btn" id="clear-chat" aria-label="Clear Chat">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button class="action-btn" id="download-chat" aria-label="Download Chat">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="action-btn" id="share-chat" aria-label="Share Chat">
+                                        <i class="fas fa-share-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-messages" id="chat-messages" role="log" aria-live="polite">
+                            <!-- Messages will be added here -->
+                        </div>
+                        
+                        <div class="typing-indicator" id="typing-indicator" style="display: none;">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        
+                        <div class="chat-input-container">
+                            <div class="input-actions">
+                                <button class="attachment-btn" aria-label="Attach File">
+                                    <i class="fas fa-paperclip"></i>
+                                </button>
+                                <button class="emoji-btn" aria-label="Add Emoji">
+                                    <i class="fas fa-smile"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="chat-input">
+                                <textarea 
+                                    id="user-input" 
+                                    placeholder="Type your message..." 
+                                    aria-label="Message input"
+                                    rows="1"
+                                ></textarea>
+                                <div class="input-buttons">
+                                    <button id="voice-btn" class="voice-btn" aria-label="Voice Input">
+                                        <i class="fas fa-microphone"></i>
+                                    </button>
+                                    <button id="send-btn" class="send-btn" aria-label="Send Message">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Commands Sidebar -->
+                    <aside class="quick-commands">
+                        <h3>Quick Commands</h3>
+                        <div class="commands-list">
+                            <button class="command-btn" data-command="weather">
+                                <i class="fas fa-cloud-sun"></i>
+                                <span>Weather</span>
+                            </button>
+                            <button class="command-btn" data-command="news">
+                                <i class="fas fa-newspaper"></i>
+                                <span>News</span>
+                            </button>
+                            <button class="command-btn" data-command="translate">
+                                <i class="fas fa-language"></i>
+                                <span>Translate</span>
+                            </button>
+                            <button class="command-btn" data-command="calculate">
+                                <i class="fas fa-calculator"></i>
+                                <span>Calculate</span>
+                            </button>
+                        </div>
+                    </aside>
+                </section>
+                
+                <!-- Analytics Section -->
+                <section class="analytics-section hidden" id="analytics-section">
+                    <!-- Analytics content will be added here -->
+                </section>
+                
+                <!-- History Section -->
+                <section class="history-section hidden" id="history-section">
+                    <!-- History content will be added here -->
+                </section>
+                
+                <!-- Settings Section -->
+                <section class="settings-section hidden" id="settings-section">
+                    <div class="settings-container">
+                        <h2>Settings</h2>
+                        <div class="settings-group">
+                            <h3>Voice Settings</h3>
+                            <div class="voice-changer">
+                                <label>Select Voice:</label>
+                                <div class="voice-options">
+                                    <button class="voice-option active" data-voice="male">
+                                        <i class="fas fa-male"></i>
+                                        <span>Male</span>
+                                    </button>
+                                    <button class="voice-option" data-voice="female">
+                                        <i class="fas fa-female"></i>
+                                        <span>Female</span>
+                                    </button>
+                                    <button class="voice-option" data-voice="robot">
+                                        <i class="fas fa-robot"></i>
+                                        <span>Robot</span>
+                                    </button>
+                                    <button class="voice-option" data-voice="child">
+                                        <i class="fas fa-child"></i>
+                                        <span>Child</span>
+                                    </button>
+                                    <button class="voice-option" data-voice="elder">
+                                        <i class="fas fa-user-tie"></i>
+                                        <span>Elder</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modals -->
+    <div class="modal" id="confirmation-modal" aria-hidden="true">
+        <div class="modal-content">
+            <h3>Are you sure?</h3>
+            <p id="modal-message"></p>
+            <div class="modal-actions">
+                <button class="modal-cancel">Cancel</button>
+                <button class="modal-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loader"></div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="script.js" defer></script>
+    <script>
+        // Service Worker Registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => console.log('ServiceWorker registered'))
+                    .catch(err => console.log('ServiceWorker registration failed', err));
+            });
+        }
+
+        // Create magical particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.setProperty('--tx', `${Math.random() * 100}vw`);
+            particle.style.setProperty('--ty', `${Math.random() * 100}vh`);
+            particlesContainer.appendChild(particle);
+        }
+
+        // Create magical orbs
+        const orbsContainer = document.getElementById('orbs');
+        for (let i = 0; i < 5; i++) {
+            const orb = document.createElement('div');
+            orb.className = 'orb';
+            orb.style.setProperty('--tx', `${Math.random() * 100}vw`);
+            orb.style.setProperty('--ty', `${Math.random() * 100}vh`);
+            orbsContainer.appendChild(orb);
+        }
+
+        // Create magical rays
+        const raysContainer = document.getElementById('rays');
+        for (let i = 0; i < 20; i++) {
+            const ray = document.createElement('div');
+            ray.className = 'ray';
+            ray.style.setProperty('--rotation', `${Math.random() * 360}deg`);
+            ray.style.left = `${Math.random() * 100}%`;
+            ray.style.bottom = `${Math.random() * 100}%`;
+            raysContainer.appendChild(ray);
+
+        
+        }
+    </script>
+</body>
+</html> 
